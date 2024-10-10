@@ -1,1 +1,35 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BÀI TẬP HTML</title>
+  <style>.center {  text-align: center;}.left {  text-align: left;}.right {  text-align: right;
+  </style>
+</head>
+<body>
+<h1 style="color:Tomato;text-align: center;>"Tomato>BÀI TẬP TẠO DANH SÁCH</h1>
+<h1>A.DANH SÁCH CÁC TỈNH MIỀN BẮC</h1>
+<h2><div class="left"<p>1.Hà Nội</p></div></h2>
+<h2><div class="left"<p>2.Bắc Ninh</p></div></h2>
+<h2><div class="left"<p>3.Hưng Yên</p></div></h2>
+<h2><div class="left"<p>4.Hà Nam</p></div></h2>
+<h2><div class="left"<p>5.Hòa Bình</p></div></h2>
+<h2><div class="left"<p>6.Vĩnh Phúc</p></div></h2>
+<h2><div class="left"<p>...</p></div></h2>
+<h1>B.DANH SÁCH CÁC TỈNH MIỀN TRUNG</h1>
+<h2><div class="left"<p>1.Huế</p></div></h2>
+<h2><div class="left"<p>2.Bắc Ninh</p></div></h2>
+<h2><div class="left"<p>3.Đà Nẵng</p></div></h2>
+<h2><div class="left"<p>4.Quảng Nam</p></div></h2>
+<h2><div class="left"<p>5.Bình Định</p></div></h2>
+<h2><div class="left"<p>6.Quảng trị</p></div></h2>
+<h2><div class="left"<p>...</p></div></h2>
+<h1>C.DANH SÁCH CÁC TỈNH MIỀN NAM</h1>
+<h2><div class="left"<p>1.Hồ Chí Minh</p></div></h2>
+<h2><div class="left"<p>2.BÌnh Dương</p></div></h2>
+<h2><div class="left"<p>3.Đồng Nai</p></div></h2>
+<h2><div class="left"<p>4.Bà Rịa Vũng Tàu</p></div></h2>
+<h2><div class="left"<p>5.Bình Phước</p></div></h2>
+<h2><div class="left"<p>...</p></div></h2>
+</body>
+</html>
