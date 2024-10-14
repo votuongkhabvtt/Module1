@@ -1,1 +1,25 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo Form cơ bản</title>
+</head>
+<body>
+<form style="background: aqua; width: 450px" action="#" method="get">
+    <h1 style="background: orange; text-align: center; color: aliceblue">Thể mạnh của ban</h1>
+    <label for="name">Họ và tên</label>
+    <input style="margin-left: 15px" type="text" id="name" name="name"><br>
+    <label for="gmail"> gmail </label>
+    <input style="margin-left: 40px; margin-top: 10px" type="email" id="gmail" name="gmail"><br>
+    <label> Chuyên môn </label>
+    <input style="margin-left: 20px; margin-top: 10px" type="checkbox">Luật
+    <input type="checkbox">Y tế
+    <input type="checkbox">Nghệ thuật<br>
+    <input style="margin-left: 77px; margin-top: 10px" type="checkbox"> Game
+    <input type="checkbox"> Xem bói
+    <input type="checkbox"> Thể thao<br>
+    <button style="margin-left: 77px; margin-top: 10px; margin-bottom: 10px" type="button">gửi thông tin</button>
+    <button type="reset">nhập lại</button>
+</form>
+</body>
+</html>
