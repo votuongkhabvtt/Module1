@@ -1,1 +1,35 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Đăng Ký khám bệnh</title>
+</head>
+<body>
+<h2>Form Đăng Ký khám bệnh</h2>
+<form action="/submit_registration" method="POST">
+    <!-- Trường Họ và tên -->
+    <label for="name">Họ và tên:</label>
+    <input type="text" id="name" name="name" required><br><br>
 
+    <!-- Trường Email -->
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br><br>
+
+    <!-- Trường Số điện thoại -->
+    <label for="phone">Số điện thoại:</label>
+    <input type="number" id="phone" name="phone" required><br><br>
+
+    <!-- Trường Giới tính -->
+    <label>Giới tính:</label><br>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Nam</label><br>
+
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Nữ</label><br><br>
+
+    <!-- Nút Submit -->
+    <button type="submit">Đăng ký</button>
+</form>
+</body>
+</html>
