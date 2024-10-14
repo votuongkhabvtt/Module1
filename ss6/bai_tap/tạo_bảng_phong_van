@@ -1,1 +1,121 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form survey</title>
+</head>
+<body>
+<h3>Điều tra phân nhóm bệnh nhaan</h3>
+<p>Vui lòng anh (chị) trả lời các câu hỏi sau.</p>
+<hr>
+<form action="#" method="post">
+    <label for="age">Nhóm tuổi anh/chị?</label><br>
+    <select id="age" name="age">
+        <option value= "20 - 3024">20 - 30</option>
+        <option value= "31 - 40">31 - 40</option>
+        <option value= "41 - 50">41 - 50</option>
+        <option value= "50 +">50 +</option>
+    </select><br>
+    <label for="income">Thu nhập hàng trung bình àng năm của anh/chị?</label><br>
+    <select id="income" name="income">
+        <option value= "$10 - $30,000">$10 - $30,000</option>
+        <option value= "$30,001 - $50,000">$30,001 - $50,000</option>
+        <option value= "$50,001 - $100,000">$50,001 - $100,000</option>
+        <option value= "$100,001 +">$100,001 +</option>
+    </select><br>
+    <span>Giới tính</span><br>
+    <input type="radio" id="Giới_tính" name="gender" value="nam">
+    <label for="gender_male">nam</label><br>
+    <input type="radio" id="gender_female" name="gender" value="nữ">
+    <label for="gender_female">nữ</label><br>
+    <input type="radio" id="gender_other" name="gender" value="khác">
+    <label for="gender_other">khác</label><br>
+    <input type="text" id="gender_other_text" name="gender_other_text"><br>
+    <label>Bạn có đi khám chữa bệnh trong 3 thang trở lại đây?. Xin đánh dấu vào ô chọn dưới.</label><br>
+    <input type="checkbox" id="1 lần" name="1 lần" value="1 lần">
+    <label for="1 lần">1 lần</label><br>
+    <input type="checkbox" id="2 lần" name="2 lần" value="2 lần">
+    <label for="2 lần">2 lần</label><br>
+    <input type="checkbox" id="3 lần" name="3 lần" value="3 lần">
+    <label for="3 lần">3 lần</label><br>    
+    <span>Bạn có thường xuyên đi tầm soát sức khỏe?</span><br>
+    <input type="radio" id="frequency_monthly" name="frequency" value="hàng tháng">
+    <label for="frequency_monthly">hàng tháng</label><br>
+    <input type="radio" id="frequency_weekly" name="frequency" value="hnagf tuần">
+    <label for="frequency_weekly">hàng tuần</label><br>
+    <input type="radio" id="frequency_daily" name="frequency" value="daily">
+    <label for="frequency_daily">daily</label><br>
+    <span>Bạn trả dịch vụ khám chữa bệnh bằng?</span><br>
+    <span>$ </span><input type="number" id="pay_dollars" name="pay" style="width: 50px">
+    <label for="pay_dollars">Dollars</label><span> - </span>
+    <input type="number" id="pay_cents" name="pay" style="width: 50px">
+    <label for="pay_cents">Cents</label><br>
+    <label for="feature">Bạn có muốn thử các kỹ thuật khám chưa bệnh mới không?.</label><br>
+    <textarea id="feature" name="feature" rows="10" cols="80"></textarea><br>
+    <span>Vui lòng điền muốn thử vào bảng dưới.</span>
+    <table style="border: solid 1px">
+        <tr style="background-color: lightgrey">
+        <th></th><th>rất không đồng ý</th><th>không đồng ý</th><th>đồng ý</th><th>rất đồng ý</th>
+        </tr>
+        <tr>
+            <td>Giá cả khám cữa bệnh chúng tôi như thế nào.</td>
+            <td>
+                <input type="radio" id="rate_price_1" name="rate_price" value="Rẻ"><br>
+                <label for="rate_price_1">1</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_price_2" name="rate_price" value="Vừa"><br>
+                <label for="rate_price_2">2</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_price_3" name="rate_price" value="Hơi đắt"><br>
+                <label for="rate_price_3">3</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_price_4" name="rate_price" value="Đắt"><br>
+                <label for="rate_price_4">4</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Chất lượng khám chữa bệnh của chúng tôi như thể nào?</td>
+            <td>
+                <input type="radio" id="rate_quality_1" name="rate_quality" value="trung bình"><br>
+                <label for="rate_quality_1">1</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_quality_2" name="rate_quality" value="khá"><br>
+                <label for="rate_quality_2">2</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_quality_3" name="rate_quality" value="tốt"><br>
+                <label for="rate_quality_3">3</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_quality_4" name="rate_quality" value=”rất tốt"><br>
+                <label for="rate_quality_4">4</label>
+            </td>
+        </tr>
+        <tr>
+            <td>Bạn có muốn giới thi dịch vụ của chúng tối đến người khác.</td>
+            <td>
+                <input type="radio" id="rate_recommend_1" name="rate_recommend" value="có thể"><br>
+                <label for="rate_recommend_1">1</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_recommend_2" name="rate_recommend" value="thuận tiện thì giới thiệu"><br>
+                <label for="rate_recommend_2">2</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_recommend_3" name="rate_recommend" value="giới thiệu mọi bạn bè"><br>
+                <label for="rate_recommend_3">3</label>
+            </td>
+            <td>
+                <input type="radio" id="rate_recommend_4" name="rate_recommend" value="giới thiệu thành viên gia đình"><br>
+                <label for="rate_recommend_4">4</label>
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>
