@@ -1,10 +1,295 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<!DOCTYPE html> 
+<html lang="vi"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Phân Loại Sinh Viên</title> 
+    <style> 
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+        } 
+         
+        body { 
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #1a2a6c); 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            padding: 20px; 
+        } 
+         
+        .container { 
+            background: rgba(255, 255, 255, 0.92); 
+            border-radius: 20px; 
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3); 
+            width: 100%; 
+            max-width: 500px; 
+            padding: 30px; 
+            text-align: center; 
+        } 
+         
+        h1 { 
+            color: #1a2a6c; 
+            margin-bottom: 10px; 
+            font-size: 2.2rem; 
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); 
+        } 
+         
+        .description { 
+            color: #555; 
+            margin-bottom: 30px; 
+            font-size: 1.1rem; 
+            line-height: 1.6; 
+        } 
+         
+        .input-group { 
+            display: flex; 
+            flex-direction: column; 
+            margin-bottom: 25px; 
+            text-align: left; 
+        } 
+         
+        label { 
+            font-weight: 600; 
+            margin-bottom: 8px; 
+            color: #333; 
+            font-size: 1.1rem; 
+        } 
+         
+        input { 
+            padding: 15px; 
+            border: 2px solid #ddd; 
+            border-radius: 10px; 
+            font-size: 1.1rem; 
+            transition: all 0.3s; 
+        } 
+         
+        input:focus { 
+            border-color: #1a2a6c; 
+            outline: none; 
+            box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.2); 
+        } 
+         
+        button { 
+            background: linear-gradient(to right, #1a2a6c, #b21f1f); 
+            color: white; 
+            border: none; 
+            padding: 16px; 
+            font-size: 1.2rem; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            width: 100%; 
+            font-weight: 600; 
+            transition: all 0.3s; 
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); 
+            margin-bottom: 25px; 
+        } 
+         
+        button:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); 
+        } 
+         
+        button:active { 
+            transform: translateY(0); 
+        } 
+         
+        .result-container { 
+            background: #f8f9fa; 
+            border-radius: 15px; 
+            padding: 25px; 
+            margin-top: 20px; 
+            border: 2px dashed #1a2a6c; 
+        } 
+         
+        .result-title { 
+            font-weight: 600; 
+            color: #333; 
+            margin-bottom: 15px; 
+            font-size: 1.3rem; 
+        } 
+         
+        .result-value { 
+            font-size: 1.8rem; 
+            font-weight: 700; 
+            padding: 15px; 
+            border-radius: 10px; 
+        } 
+         
+        .rating-scale { 
+            display: flex; 
+            justify-content: space-between; 
+            margin-top: 30px; 
+            padding: 15px; 
+            background: #f0f5ff; 
+            border-radius: 10px; 
+        } 
+         
+        .rating-item { 
+            text-align: center; 
+            flex: 1; 
+            padding: 10px; 
+            border-radius: 8px; 
+            margin: 0 5px; 
+            font-weight: 600; 
+        } 
+         
+        .excellent { background-color: #d4edda; color: #155724; } 
+        .good { background-color: #cce5ff; color: #004085; } 
+        .average { background-color: #fff3cd; color: #856404; } 
+         
+        .rules { 
+            margin-top: 25px; 
+            background: #e9ecef; 
+            padding: 20px; 
+            border-radius: 10px; 
+            text-align: left; 
+        } 
+         
+        .rules h3 { 
+            color: #1a2a6c; 
+            margin-bottom: 10px; 
+            text-align: center; 
+        } 
+         
+        .rules ul { 
+            padding-left: 20px; 
+        } 
+         
+        .rules li { 
+            margin-bottom: 8px; 
+            line-height: 1.5; 
+        } 
+         
+        @media (max-width: 600px) { 
+            .container { 
+                padding: 20px; 
+            } 
+             
+            h1 { 
+                font-size: 1.8rem; 
+            } 
+             
+            .rating-scale { 
+                flex-direction: column; 
+            } 
+             
+            .rating-item { 
+                margin: 5px 0; 
+            } 
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="container"> 
+        <h1>PHÂN LOẠI SINH VIÊN</h1> 
+        <p class="description">Nhập điểm học kỳ 1 và học kỳ 2 để xếp loại sinh viên</p> 
+         
+        <div class="input-group"> 
+            <label for="hk1">Điểm học kỳ 1:</label> 
+            <input type="number" id="hk1" min="0" max="10" step="0.1" placeholder="Nhập 
+điểm HK1 (0-10)"> 
+        </div> 
+         
+        <div class="input-group"> 
+            <label for="hk2">Điểm học kỳ 2:</label> 
+            <input type="number" id="hk2" min="0" max="10" step="0.1" placeholder="Nhập 
+điểm HK2 (0-10)"> 
+        </div> 
+         
+        <button onclick="classifyStudent()">PHÂN LOẠI SINH VIÊN</button> 
+         
+        <div class="result-container"> 
+            <div class="result-title">KẾT QUẢ PHÂN LOẠI:</div> 
+            <div id="result" class="result-value">Vui lòng nhập điểm</div> 
+        </div> 
+         
+        <div class="rating-scale"> 
+            <div class="rating-item excellent">Tốt: &gt; 8.0</div> 
+            <div class="rating-item good">Khá: 5.0 - 7.0</div> 
+            <div class="rating-item average">Trung bình: &lt; 5.0</div> 
+        </div> 
+         
+        <div class="rules"> 
+            <h3>QUY TẮC PHÂN LOẠI</h3> 
+            <ul> 
+                <li><strong>Tốt</strong>: Điểm trung bình &gt; 8.0</li> 
+                <li><strong>Khá</strong>: Điểm trung bình từ 5.0 đến 7.0</li> 
+                <li><strong>Trung bình</strong>: Điểm trung bình &lt; 5.0</li> 
+                <li>Điểm trung bình = (Điểm HK1 + Điểm HK2) / 2</li> 
+                <li>Điểm nhập vào phải trong khoảng từ 0 đến 10</li> 
+            </ul> 
+        </div> 
+    </div> 
+ 
+    <script> 
+        function classifyStudent() { 
+            // Lấy giá trị từ các ô nhập 
+            const hk1Input = document.getElementById('hk1'); 
+            const hk2Input = document.getElementById('hk2'); 
+            const resultDiv = document.getElementById('result'); 
+             
+            // Chuyển đổi giá trị sang số 
+            const hk1 = parseFloat(hk1Input.value); 
+            const hk2 = parseFloat(hk2Input.value); 
+             
+            // Kiểm tra hợp lệ 
+            if (isNaN(hk1) || isNaN(hk2)) { 
+                resultDiv.textContent = "Vui lòng nhập đầy đủ điểm!"; 
+                resultDiv.style.backgroundColor = "#f8d7da"; 
+                resultDiv.style.color = "#721c24"; 
+                return; 
+            } 
+             
+            if (hk1 < 0 || hk1 > 10 || hk2 < 0 || hk2 > 10) { 
+                resultDiv.textContent = "Điểm phải từ 0 đến 10!"; 
+                resultDiv.style.backgroundColor = "#f8d7da"; 
+                resultDiv.style.color = "#721c24"; 
+                return; 
+            } 
+             
+            // Tính điểm trung bình 
+            const average = (hk1 + hk2) / 2; 
+             
+            // Phân loại sinh viên 
+            let classification; 
+            let bgColor, textColor; 
+             
+            if (average > 8.0) { 
+                classification = "TỐT"; 
+                bgColor = "#d4edda"; 
+                textColor = "#155724"; 
+            } else if (average >= 5.0 && average <= 7.0) { 
+                classification = "KHÁ"; 
+                bgColor = "#cce5ff"; 
+                textColor = "#004085"; 
+            } else { 
+                classification = "TRUNG BÌNH"; 
+                bgColor = "#fff3cd"; 
+                textColor = "#856404"; 
+            } 
+             
+            // Hiển thị kết quả 
+            resultDiv.textContent = `Điểm TB: ${average.toFixed(2)} - Xếp loại: ${classification}`; 
+            resultDiv.style.backgroundColor = bgColor; 
+            resultDiv.style.color = textColor; 
+        } 
+         
+        // Xử lý sự kiện nhấn Enter 
+        document.getElementById('hk1').addEventListener('keyup', function(event) { 
+            if (event.key === 'Enter') { 
+                classifyStudent(); 
+            } 
+        }); 
+         
+      document.getElementById('hk2').addEventListener('keyup', function(event) { 
+            if (event.key === 'Enter') { 
+                classifyStudent(); 
+            } 
+        }); 
+    </script> 
+</body> 
+</html> 
