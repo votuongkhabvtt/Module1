@@ -1,0 +1,104 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <title>Kiểm tra số chẵn lẻ</title> 
+    <meta charset="UTF-8"> 
+    <style> 
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 400px; 
+            margin: 50px auto; 
+            padding: 20px; 
+            border: 1px solid #ccc; 
+            border-radius: 10px; 
+            background-color: #f9f9f9; 
+        } 
+        h1 { 
+            color: #333; 
+            text-align: center; 
+        } 
+        .input-group { 
+            margin-bottom: 15px; 
+        } 
+        input, button { 
+            padding: 10px; 
+            font-size: 16px; 
+            border-radius: 5px; 
+        } 
+        input { 
+            width: 100%; 
+            box-sizing: border-box; 
+            border: 1px solid #ddd; 
+        } 
+        button { 
+            background-color: #4CAF50; 
+            color: white; 
+            border: none; 
+            cursor: pointer; 
+            width: 100%; 
+        } 
+        button:hover { 
+            background-color: #45a049; 
+        } 
+        #result { 
+            margin-top: 20px; 
+            padding: 15px; 
+            border-radius: 5px; 
+            font-size: 18px; 
+            text-align: center; 
+            font-weight: bold; 
+        } 
+        .even { 
+            background-color: #d4edda; 
+            color: #155724; 
+        } 
+        .odd { 
+            background-color: #f8d7da; 
+            color: #721c24; 
+        } 
+    </style> 
+</head> 
+<body> 
+    <h1>KIỂM TRA SỐ CHẴN/LẺ</h1> 
+    <div class="input-group"> 
+        <input type="number" id="numberInput" placeholder="Nhập số nguyên n"> 
+    </div> 
+    <button onclick="checkNumber()">Kiểm tra</button> 
+    <div id="result"></div> 
+ 
+    <script> 
+        function checkNumber() { 
+            // Lấy giá trị nhập vào 
+            const input = document.getElementById("numberInput"); 
+            const resultDiv = document.getElementById("result"); 
+             
+            // Kiểm tra nếu ô trống 
+            if(input.value === "") { 
+                resultDiv.textContent = "Vui lòng nhập số!"; 
+                resultDiv.className = ""; 
+                return; 
+            } 
+             
+            // Chuyển đổi thành số nguyên 
+            const n = parseInt(input.value); 
+             
+            // Kiểm tra tính chẵn lẻ 
+            if(n % 2 === 0) { 
+                resultDiv.textContent = `${n} là số CHẴN`; 
+                resultDiv.className = "even"; 
+            } else { 
+                resultDiv.textContent = `${n} là số LẺ`; 
+                resultDiv.className = "odd"; 
+            } 
+        } 
+         
+        // Xử lý sự kiện nhấn Enter 
+        document.getElementById("numberInput") 
+                .addEventListener("keyup", function(event) { 
+                    if (event.key === "Enter") { 
+                        checkNumber(); 
+                    } 
+                }); 
+    </script> 
+</body> 
+</html> 
