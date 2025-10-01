@@ -1,1 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biểu đồ theo dõi tiến bộ thể lực</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            max-width: 900px;
+            width: 100%;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .chart-wrapper {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+        }
+        
+        .info-panel {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .info-panel h3 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .info-panel ul {
+            padding-left: 20px;
+        }
+        
+        .info-panel li {
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .legend-color {
+            width: 15px;
+            height: 15px;
+            border-radius: 3px;
+        }
+        
+        @media (max-width: 768px) {
+            .chart-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BIỂU ĐỒ THEO DÕI TIẾN BỘ THỂ LỰC</h1>
+        
+        <div class="chart-container">
+            <div class="chart-wrapper">
+                <canvas id="fitnessChart" width="500" height="500"></canvas>
+                
+                <div class="legend">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #3498db;"></div>
+                        <span>Lần đánh giá 1 (Tháng 1)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #e74c3c;"></div>
+                        <span>Lần đánh giá 2 (Tháng 4)</span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: #2ecc71;"></div>
+                        <span>Lần đánh giá 3 (Tháng 7)</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-panel">
+                <h3>NHẬN XÉT & MỤC TIẾU TIẾP THEO</h3>
+                <ul>
+                    <li><strong>Điểm mạnh:</strong> Sức bền, Tốc độ cải thiện vượt bậc.</li>
+                    <li><strong>Cần duy trì:</strong> Thăng bằng, Khéo léo.</li>
+                    <li><strong>Mục tiêu:</strong> Tập trung vào Linh hoạt và Sức mạnh tối đa.</li>
+                    <li><strong>Tiến bộ tổng thể:</strong> Tăng 25% so với lần đánh giá đầu.</li>
+                    <li><strong>Khuyến nghị:</strong> Duy trì chế độ tập luyện hiện tại, tăng cường bài tập linh hoạt khớp.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
+    <script>
+        // Lớp đối tượng cho biểu đồ thể lực
+        class FitnessRadarChart {
+            constructor(canvasId, data) {
+                this.canvas = document.getElementById(canvasId);
+                this.ctx = this.canvas.getContext('2d');
+                this.data = data;
+                this.centerX = this.canvas.width / 2;
+                this.centerY = this.canvas.height / 2;
+                this.radius = Math.min(this.centerX, this.centerY) * 0.8;
+                this.angleStep = (2 * Math.PI) / this.data.categories.length;
+                
+                this.colors = {
+                    dataset1: '#3498db',
+                    dataset2: '#e74c3c',
+                    dataset3: '#2ecc71'
+                };
+                
+                this.draw();
+            }
+            
+            // Vẽ lưới biểu đồ
+            drawGrid() {
+                this.ctx.strokeStyle = '#e0e0e0';
+                this.ctx.lineWidth = 1;
+                this.ctx.textAlign = 'center';
+                this.ctx.textBaseline = 'middle';
+                this.ctx.font = '12px Arial';
+                
+                // Vẽ các vòng tròn đồng tâm
+                for (let i = 1; i <= 5; i++) {
+                    this.ctx.beginPath();
+                    const currentRadius = (this.radius / 5) * i;
+                    
+                    for (let j = 0; j <= this.data.categories.length; j++) {
+                        const angle = j * this.angleStep;
+                        const x = this.centerX + Math.cos(angle) * currentRadius;
+                        const y = this.centerY + Math.sin(angle) * currentRadius;
+                        
+                        if (j === 0) {
+                            this.ctx.moveTo(x, y);
+                        } else {
+                            this.ctx.lineTo(x, y);
+                        }
+                    }
+                    
+                    this.ctx.stroke();
+                    
+                    // Vẽ nhãn cho các vòng tròn
+                    this.ctx.fillStyle = '#7f8c8d';
+                    this.ctx.fillText(i * 20, this.centerX, this.centerY - currentRadius);
+                }
+                
+                // Vẽ các trục và nhãn
+                for (let i = 0; i < this.data.categories.length; i++) {
+                    const angle = i * this.angleStep;
+                    const x = this.centerX + Math.cos(angle) * (this.radius + 30);
+                    const y = this.centerY + Math.sin(angle) * (this.radius + 30);
+                    
+                    // Vẽ trục
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.centerX, this.centerY);
+                    this.ctx.lineTo(
+                        this.centerX + Math.cos(angle) * this.radius,
+                        this.centerY + Math.sin(angle) * this.radius
+                    );
+                    this.ctx.stroke();
+                    
+                    // Thêm nhãn cho các trục
+                    this.ctx.fillStyle = '#2c3e50';
+                    this.ctx.font = 'bold 14px Arial';
+                    
+                    // Căn chỉnh văn bản dựa trên góc
+                    let textAlign = 'center';
+                    let textBaseline = 'middle';
+                    
+                    if (Math.cos(angle) > 0.5) {
+                        textAlign = 'left';
+                    } else if (Math.cos(angle) < -0.5) {
+                        textAlign = 'right';
+                    }
+                    
+                    if (Math.sin(angle) > 0.5) {
+                        textBaseline = 'top';
+                    } else if (Math.sin(angle) < -0.5) {
+                        textBaseline = 'bottom';
+                    }
+                    
+                    this.ctx.textAlign = textAlign;
+                    this.ctx.textBaseline = textBaseline;
+                    this.ctx.fillText(this.data.categories[i], x, y);
+                }
+            }
+            
+            // Vẽ một dataset
+            drawDataset(dataset, color) {
+                this.ctx.beginPath();
+                
+                for (let i = 0; i < dataset.length; i++) {
+                    const value = dataset[i] / 100 * this.radius; // Giá trị từ 0-100
+                    const angle = i * this.angleStep;
+                    const x = this.centerX + Math.cos(angle) * value;
+                    const y = this.centerY + Math.sin(angle) * value;
+                    
+                    if (i === 0) {
+                        this.ctx.moveTo(x, y);
+                    } else {
+                        this.ctx.lineTo(x, y);
+                    }
+                    
+                    // Vẽ điểm dữ liệu
+                    this.ctx.fillStyle = color;
+                    this.ctx.beginPath();
+                    this.ctx.arc(x, y, 5, 0, Math.PI * 2);
+                    this.ctx.fill();
+                }
+                
+                this.ctx.closePath();
+                this.ctx.strokeStyle = color;
+                this.ctx.lineWidth = 2;
+                this.ctx.stroke();
+                
+                // Tô màu với độ trong suốt
+                this.ctx.fillStyle = color + '40'; // Màu với độ trong suốt
+                this.ctx.fill();
+            }
+            
+            // Vẽ toàn bộ biểu đồ
+            draw() {
+                // Xóa canvas
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Vẽ lưới
+                this.drawGrid();
+                
+                // Vẽ các dataset
+                this.drawDataset(this.data.datasets[2], this.colors.dataset3);
+                this.drawDataset(this.data.datasets[1], this.colors.dataset2);
+                this.drawDataset(this.data.datasets[0], this.colors.dataset1);
+            }
+        }
+
+        // Dữ liệu mẫu
+        const fitnessData = {
+            categories: ['Sức mạnh', 'Sức bền', 'Tốc độ', 'Khéo léo', 'Linh hoạt', 'Thăng bằng'],
+            datasets: [
+                [50, 60, 70, 40, 30, 80],  // Lần đánh giá 1
+                [70, 80, 75, 60, 50, 90],  // Lần đánh giá 2
+                [80, 90, 85, 70, 65, 95]   // Lần đánh giá 3
+            ]
+        };
+
+        // Khởi tạo biểu đồ khi trang được tải
+        window.onload = function() {
+            new FitnessRadarChart('fitnessChart', fitnessData);
+        };
+    </script>
+</body>
+</html>
